@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: CustomColors.primary),
+          scaffoldBackgroundColor: CustomColors.darkGrey,
           useMaterial3: true,
         ),
         routes: NavigationManager.appRoutes,
