@@ -21,11 +21,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final goalListingBloc = sl<GoalListingBloc>();
+  final goalListingBloc = sl<HomeGoalsBloc>();
   @override
   void initState() {
-    sl<HomeUserInfoBloc>()
-        .add(const FetchFelloUserSavedDetailsEvent(Constants.userId));
+    sl<HomeGoalsBloc>()
+        .add(const FetchGoalsEvent(Constants.userId));
     sl<HomeFelloBalanceBloc>()
         .add(const FetchFelloBalanceEvent(Constants.userId));
     super.initState();
@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> {
               child: BlocBuilder(
                   bloc: goalListingBloc,
                   builder: (context, state) {
-                    if (state is GoalListingLoadedState) {
+                    if (state is HomeGoalsLoadedState) {
                       return ListView.builder(
                         itemBuilder: (context, index) =>
                             ListTile(

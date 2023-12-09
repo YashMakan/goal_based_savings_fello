@@ -13,7 +13,7 @@ class GreetingsSection extends StatefulWidget {
 }
 
 class _GreetingsSectionState extends State<GreetingsSection> {
-  final homeUserInfo = sl<HomeUserInfoBloc>();
+  final homeUserInfo = sl<HomeGoalsBloc>();
 
   @override
   Widget build(BuildContext context) {
