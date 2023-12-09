@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:goal_based_savings_fello/app/features/goal_save/data/models/investment_details.dart';
 import 'package:goal_based_savings_fello/app/features/home/data/data_sources/home_data_source.dart';
 import 'package:goal_based_savings_fello/app/features/home/data/models/user_info.dart';
 import 'package:goal_based_savings_fello/app/features/home/domain/repository/home_repository.dart';
@@ -24,6 +25,16 @@ class HomeRepositoryImpl extends HomeRepository {
         () => homeDataSource.fetchUserSavedDetails(userId), (result) {
       final res = result['result'];
       return UserInfo.fromJson(res);
+    });
+  }
+
+  @override
+  Future<Either<ErrorState, List<InvestmentDetails>>> fetchGoals(
+      int userId) async {
+    return await ErrorHandler.callApi(
+        () => homeDataSource.fetchUserSavedDetails(userId), (result) {
+      final res = result['result'] as List<dynamic>;
+      return res.map((e) => InvestmentDetails.fromJson(e)).toList();
     });
   }
 }

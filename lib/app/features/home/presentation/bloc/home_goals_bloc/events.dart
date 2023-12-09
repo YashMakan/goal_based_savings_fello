@@ -1,14 +1,14 @@
 part of 'bloc.dart';
 
-sealed class HomeUserInfoEvent extends Equatable {
-  const HomeUserInfoEvent();
+sealed class GoalsEvent extends Equatable {
+  const GoalsEvent();
 
   @override
   List<Object> get props => [];
 }
 
-class FetchFelloUserSavedDetailsEvent extends HomeUserInfoEvent {
+class FetchUserGoalsEvent extends GoalsEvent {
   final int userId;
 
-  const FetchFelloUserSavedDetailsEvent(this.userId);
+  const FetchUserGoalsEvent(this.userId);
 }

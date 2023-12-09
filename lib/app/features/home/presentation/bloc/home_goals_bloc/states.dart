@@ -1,23 +1,23 @@
 part of 'bloc.dart';
 
 @immutable
-sealed class HomeUserInfoState extends Equatable {
-  const HomeUserInfoState();
+sealed class HomeGoalsState extends Equatable {
+  const HomeGoalsState();
 
   @override
   List<Object> get props => [];
 }
 
-class HomeUserInfoActionState extends HomeUserInfoState {}
+class HomeGoalsActionState extends HomeGoalsState {}
 
-class HomeUserInfoInitialState extends HomeUserInfoState {}
+class HomeGoalsInitialState extends HomeGoalsState {}
 
-class HomeUserInfoLoadingState extends HomeUserInfoState {}
+class HomeGoalsLoadingState extends HomeGoalsState {}
 
-class HomeUserInfoLoadedState extends HomeUserInfoState {
-  final UserInfo userInfo;
+class HomeGoalsLoadedState extends HomeGoalsState {
+  final List<InvestmentDetails> detailsList;
 
-  const HomeUserInfoLoadedState(this.userInfo);
+  const HomeGoalsLoadedState(this.detailsList);
 }
 
-class HomeUserInfoErrorActionState extends HomeUserInfoActionState {}
+class HomeGoalsErrorActionState extends HomeGoalsActionState {}

@@ -3,30 +3,29 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:goal_based_savings_fello/app/features/goal_save/data/models/investment_details.dart';
 import 'package:goal_based_savings_fello/app/features/home/data/models/user_info.dart';
-import 'package:goal_based_savings_fello/app/features/home/domain/usecases/fetch_user_saved_details_usecase.dart';
+import 'package:goal_based_savings_fello/app/features/home/domain/usecases/fetch_goals_usecase.dart';
 
 part 'events.dart';
 
 part 'states.dart';
 
-class HomeGoalsBloc extends Bloc<HomeUserInfoEvent, HomeUserInfoState> {
-  final FetchUserSavedDetailsUseCase fetchUserSavedDetailsUseCase;
+class HomeGoalsBloc extends Bloc<GoalsEvent, HomeGoalsState> {
+  final FetchGoalsUseCase fetchGoalsUseCase;
 
-  HomeGoalsBloc(this.fetchUserSavedDetailsUseCase)
-      : super(HomeUserInfoInitialState()) {
-    on<FetchFelloUserSavedDetailsEvent>(fetchFelloUserSavedDetailsEvent);
+  HomeGoalsBloc(this.fetchGoalsUseCase) : super(HomeGoalsInitialState()) {
+    on<FetchUserGoalsEvent>(fetchUserGoalsEvent);
   }
 
-  Future<FutureOr<void>> fetchFelloUserSavedDetailsEvent(
-      FetchFelloUserSavedDetailsEvent event,
-      Emitter<HomeUserInfoState> emit) async {
-    emit(HomeUserInfoLoadingState());
-    final result = await fetchUserSavedDetailsUseCase(event.userId);
+  Future<FutureOr<void>> fetchUserGoalsEvent(
+      FetchUserGoalsEvent event, Emitter<HomeGoalsState> emit) async {
+    emit(HomeGoalsLoadingState());
+    final result = await fetchGoalsUseCase(event.userId);
     result.fold((l) {
-      emit(HomeUserInfoErrorActionState());
+      emit(HomeGoalsErrorActionState());
     }, (r) {
-      emit(HomeUserInfoLoadedState(r));
+      emit(HomeGoalsLoadedState(r));
     });
   }
 }
