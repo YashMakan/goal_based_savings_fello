@@ -7,7 +7,11 @@ class CustomTextField extends StatelessWidget {
   final TextInputType? textInputType;
 
   const CustomTextField(
-      {super.key, required this.title, required this.enabled, this.asset, this.textInputType});
+      {super.key,
+      required this.title,
+      required this.enabled,
+      this.asset,
+      this.textInputType});
 
   @override
   Widget build(BuildContext context) {
@@ -15,15 +19,12 @@ class CustomTextField extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.only(left: 16),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8)
-      ),
+          color: Colors.white, borderRadius: BorderRadius.circular(8)),
       child: TextField(
         keyboardType: textInputType,
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          label: Text(title)
-        ),
+        style: const TextStyle(color: Colors.black),
+        decoration:
+            InputDecoration(border: InputBorder.none, label: Text(title)),
       ),
     );
   }
