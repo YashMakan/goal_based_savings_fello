@@ -61,9 +61,15 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           // todo: this widget I am adding in last so pardon the UI
-          Text(
-            'Ongoing goals',
-            style: context.titleLarge,
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(
+                'Ongoing goals',
+                style: context.titleLarge,
+              ),
+            ),
           ),
           Expanded(
               child: BlocBuilder(
