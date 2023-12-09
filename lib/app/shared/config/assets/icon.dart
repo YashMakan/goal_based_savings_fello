@@ -4,4 +4,5 @@ class AppIcons {
   static const String meter = '$root/meter.png';
   static const String rightArrow = '$root/right_arrow.png';
   static const String headset = '$root/headset.png';
+  static const String gold = '$root/gold.png';
 }

@@ -3,6 +3,7 @@ import 'package:goal_based_savings_fello/app/features/goal_save/presentation/com
 import 'package:goal_based_savings_fello/app/features/goal_save/presentation/components/choose_investment_type.dart';
 import 'package:goal_based_savings_fello/app/features/goal_save/presentation/components/goal_save_page_app_bar.dart';
 import 'package:goal_based_savings_fello/app/features/goal_save/presentation/components/investment_amount_slider_section.dart';
+import 'package:goal_based_savings_fello/app/features/goal_save/presentation/components/proceed_button.dart';
 import 'package:goal_based_savings_fello/app/shared/core/components/background_widget.dart';
 
 class GoalSavePage extends StatefulWidget {
@@ -15,16 +16,21 @@ class GoalSavePage extends StatefulWidget {
 class _GoalSavePageState extends State<GoalSavePage> {
   @override
   Widget build(BuildContext context) {
-    return BackgroundWidget(
-      child: Column(
-        children: [
-          GoalSavePageAppBar(),
-          ChooseInvestmentType()
-          // InvestmentAmountSliderSection(),
-          // AddGoalSection(),
-          // ChooseInvestmentType(),
-          // ProceedButton(),
-        ],
+    return const BackgroundWidget(
+      floatingActionButton: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        child: ProceedButton(),
+      ),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            GoalSavePageAppBar(),
+            ChooseInvestmentType(),
+            AddGoalSection(),
+            InvestmentAmountSliderSection(),
+            SizedBox()
+          ],
+        ),
       ),
     );
   }

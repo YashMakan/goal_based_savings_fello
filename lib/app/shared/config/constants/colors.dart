@@ -6,4 +6,5 @@ class CustomColors {
   static const Color darkGrey = Color(0xFF1a262c);
   static const Color defaultFontColor = Colors.white;
   static const Color darkGreen = Color(0xFF0c5054);
+  static const Color yellow = Color(0xFFffd979);
 }

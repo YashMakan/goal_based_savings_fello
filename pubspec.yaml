@@ -57,6 +57,7 @@ dependencies:
 
   # ui
   responsive_sizer: ^3.2.0
+  flutter_swipe_button:
 
 dev_dependencies:
   flutter_test:
