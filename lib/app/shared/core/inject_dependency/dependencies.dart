@@ -7,8 +7,10 @@ import 'package:goal_based_savings_fello/app/features/goal_save/presentation/blo
 import 'package:goal_based_savings_fello/app/features/home/data/data_sources/home_data_source.dart';
 import 'package:goal_based_savings_fello/app/features/home/data/repository_impl/home_repository_impl.dart';
 import 'package:goal_based_savings_fello/app/features/home/domain/usecases/fetch_fello_balance_usecase.dart';
+import 'package:goal_based_savings_fello/app/features/home/domain/usecases/fetch_goals_usecase.dart';
 import 'package:goal_based_savings_fello/app/features/home/domain/usecases/fetch_user_saved_details_usecase.dart';
 import 'package:goal_based_savings_fello/app/features/home/presentation/bloc/home_fello_balance_bloc/bloc.dart';
+import 'package:goal_based_savings_fello/app/features/home/presentation/bloc/home_goals_bloc/bloc.dart';
 import 'package:goal_based_savings_fello/app/features/home/presentation/bloc/home_user_info_bloc/bloc.dart';
 import 'package:goal_based_savings_fello/app/shared/core/interceptors/dio_interceptor.dart';
 

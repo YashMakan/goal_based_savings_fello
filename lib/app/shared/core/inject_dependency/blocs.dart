@@ -5,4 +5,5 @@ Future<void> injectBlocs() async {
   sl.registerSingleton(HomeFelloBalanceBloc(sl()));
 
   sl.registerSingleton(GoalSaveBloc(sl()));
+  sl.registerSingleton(HomeGoalsBloc(sl()));
 }
