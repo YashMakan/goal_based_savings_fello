@@ -1,3 +1,6 @@
+import json
+
+
 class UserInfo:
     def __init__(self, name, savings, level, ticket):
         self.name = name
@@ -12,4 +15,14 @@ class InvestmentDetails:
         self.date = date
         self.amount = amount
         self.goalType = goalType
-        self.investmentType = investmentType
+
+    def toJson(self):
+        data = {
+            "name": self.name,
+            "date": self.date,
+            "amount": self.amount,
+            "goalType": self.goalType,
+        }
+        json_string = json.dumps(data, indent=2)
+
+        return json_string

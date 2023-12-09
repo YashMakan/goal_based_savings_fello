@@ -3,14 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_swipe_button/flutter_swipe_button.dart';
 import 'package:goal_based_savings_fello/app/features/goal_save/data/models/investment_details.dart';
 import 'package:goal_based_savings_fello/app/features/goal_save/presentation/bloc/goal_save_bloc/bloc.dart';
+import 'package:goal_based_savings_fello/app/features/home/presentation/bloc/home_goals_bloc/bloc.dart';
 import 'package:goal_based_savings_fello/app/shared/config/constants/colors.dart';
+import 'package:goal_based_savings_fello/app/shared/config/constants/constants.dart';
 import 'package:goal_based_savings_fello/app/shared/config/constants/enums.dart';
 import 'package:goal_based_savings_fello/app/shared/core/inject_dependency/dependencies.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ProceedButton extends StatefulWidget {
   final Investment investment;
-  final InvestmentDetails details;
+  final InvestmentDetails? details;
 
   const ProceedButton(
       {super.key, required this.investment, required this.details});
@@ -32,7 +34,6 @@ class _ProceedButtonState extends State<ProceedButton> {
       width: 80.w,
       child: BlocListener(
         bloc: goalSaveBloc,
-        listenWhen: (current, previous) => previous is GoalSaveActionState,
         listener: (context, state) {
           Navigator.pop(context);
         },
@@ -44,7 +45,9 @@ class _ProceedButtonState extends State<ProceedButton> {
           activeThumbColor: CustomColors.darkGreen,
           activeTrackColor: Colors.white,
           onSwipe: () {
-            goalSaveBloc.add(InvestEvent(widget.details));
+            if (widget.details != null) {
+              goalSaveBloc.add(InvestEvent(widget.details!));
+            }
           },
           child: Text(
             "Invest in $text",

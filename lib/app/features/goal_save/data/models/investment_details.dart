@@ -6,18 +6,18 @@ part 'investment_details.g.dart';
 
 @JsonSerializable()
 class InvestmentDetails extends InvestmentDetailsEntity {
-  String name;
-  String date;
-  double amount;
-  String goalType;
-  Investment investmentType;
+  String? name;
+  String? date;
+  double? amount;
+  String? goalType;
+  Investment? investmentType;
 
   InvestmentDetails({
-    required this.name,
-    required this.date,
-    required this.amount,
-    required this.goalType,
-    required this.investmentType,
+    this.name,
+    this.date,
+    this.amount,
+    this.goalType,
+    this.investmentType,
   });
 
   factory InvestmentDetails.fromJson(Map<String, dynamic> json) =>

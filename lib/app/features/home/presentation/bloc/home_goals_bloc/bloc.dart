@@ -15,11 +15,11 @@ class HomeGoalsBloc extends Bloc<GoalsEvent, HomeGoalsState> {
   final FetchGoalsUseCase fetchGoalsUseCase;
 
   HomeGoalsBloc(this.fetchGoalsUseCase) : super(HomeGoalsInitialState()) {
-    on<FetchUserGoalsEvent>(fetchUserGoalsEvent);
+    on<FetchGoalsEvent>(fetchGoalsEvent);
   }
 
-  Future<FutureOr<void>> fetchUserGoalsEvent(
-      FetchUserGoalsEvent event, Emitter<HomeGoalsState> emit) async {
+  Future<FutureOr<void>> fetchGoalsEvent(
+      FetchGoalsEvent event, Emitter<HomeGoalsState> emit) async {
     emit(HomeGoalsLoadingState());
     final result = await fetchGoalsUseCase(event.userId);
     result.fold((l) {

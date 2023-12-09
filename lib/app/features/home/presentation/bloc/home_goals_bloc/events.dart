@@ -7,8 +7,8 @@ sealed class GoalsEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class FetchUserGoalsEvent extends GoalsEvent {
+class FetchGoalsEvent extends GoalsEvent {
   final int userId;
 
-  const FetchUserGoalsEvent(this.userId);
+  const FetchGoalsEvent(this.userId);
 }

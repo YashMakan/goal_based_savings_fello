@@ -12,4 +12,7 @@ abstract class HomeDataSource {
 
   @POST('/v1/fetch-user-details')
   Future<HttpResponse> fetchUserSavedDetails(@Field("user_id") int userId);
+
+  @POST('/v1/fetch-goals')
+  Future<HttpResponse> fetchGoals(@Field("user_id") int userId);
 }

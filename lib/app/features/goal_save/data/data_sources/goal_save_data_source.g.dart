@@ -23,7 +23,8 @@ class _GoalSaveDataSource implements GoalSaveDataSource {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = {'user_id': details};
+    final _data = <String, dynamic>{};
+    _data.addAll(details.toJson());
     final _result =
         await _dio.fetch(_setStreamType<HttpResponse<dynamic>>(Options(
       method: 'POST',
@@ -32,7 +33,7 @@ class _GoalSaveDataSource implements GoalSaveDataSource {
     )
             .compose(
               _dio.options,
-              '/v1/',
+              '/v1/add-invest-data',
               queryParameters: queryParameters,
               data: _data,
             )

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 // import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:goal_based_savings_fello/app/features/goal_save/presentation/bloc/goal_save_bloc/bloc.dart';
 import 'package:goal_based_savings_fello/app/features/home/presentation/bloc/home_fello_balance_bloc/bloc.dart';
 import 'package:goal_based_savings_fello/app/features/home/presentation/bloc/home_goals_bloc/bloc.dart';
+
 // import 'package:goal_based_savings_fello/app/features/home/presentation/bloc/home_goals_bloc/bloc.dart';
 import 'package:goal_based_savings_fello/app/features/home/presentation/bloc/home_user_info_bloc/bloc.dart';
 import 'package:goal_based_savings_fello/app/features/home/presentation/components/balance_section.dart';
@@ -32,6 +34,7 @@ class _HomePageState extends State<HomePage> {
         .add(const FetchFelloUserSavedDetailsEvent(Constants.userId));
     sl<HomeFelloBalanceBloc>()
         .add(const FetchFelloBalanceEvent(Constants.userId));
+    sl<HomeGoalsBloc>().add(const FetchGoalsEvent(Constants.userId));
     super.initState();
   }
 
@@ -76,19 +79,30 @@ class _HomePageState extends State<HomePage> {
                   bloc: goalListingBloc,
                   builder: (context, state) {
                     if (state is HomeGoalsLoadedState) {
+                      if (state.detailsList.isEmpty)
+                        return const Center(
+                          child: Text('NO DATA FOUND'),
+                        );
                       return ListView.builder(
-                        itemBuilder: (context, index) =>
-                            ListTile(
-                              title: Text(state.detailsList[index].name),
-                              subtitle: Text(state.detailsList[index].amount
-                                  .toString()),
-                            ),
+                        itemCount: state.detailsList.length,
+                        itemBuilder: (context, index) => Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 16),
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                            borderRadius: BorderRadius.circular(16)
+                          ),
+                          child: ListTile(
+                            textColor: Colors.black,
+                            title: Text("Goal Name: ${state.detailsList[index].name ?? "--"}"),
+                            subtitle:
+                                Text("Amount: ${state.detailsList[index].amount.toString()}"),
+                          ),
+                        ),
                       );
                     } else {
                       return const Center(child: CircularProgressIndicator());
                     }
-                  }
-              ))
+                  }))
         ],
       ),
     );

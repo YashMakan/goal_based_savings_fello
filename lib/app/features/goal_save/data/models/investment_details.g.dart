@@ -8,11 +8,12 @@ part of 'investment_details.dart';
 
 InvestmentDetails _$InvestmentDetailsFromJson(Map<String, dynamic> json) =>
     InvestmentDetails(
-      name: json['name'] as String,
-      date: json['date'] as String,
-      amount: (json['amount'] as num).toDouble(),
-      goalType: json['goalType'] as String,
-      investmentType: $enumDecode(_$InvestmentEnumMap, json['investmentType']),
+      name: json['name'] as String?,
+      date: json['date'] as String?,
+      amount: (json['amount'] as num?)?.toDouble(),
+      goalType: json['goalType'] as String?,
+      investmentType:
+          $enumDecodeNullable(_$InvestmentEnumMap, json['investmentType']),
     );
 
 Map<String, dynamic> _$InvestmentDetailsToJson(InvestmentDetails instance) =>
@@ -21,7 +22,7 @@ Map<String, dynamic> _$InvestmentDetailsToJson(InvestmentDetails instance) =>
       'date': instance.date,
       'amount': instance.amount,
       'goalType': instance.goalType,
-      'investmentType': _$InvestmentEnumMap[instance.investmentType]!,
+      'investmentType': _$InvestmentEnumMap[instance.investmentType],
     };
 
 const _$InvestmentEnumMap = {

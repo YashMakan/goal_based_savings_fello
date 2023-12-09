@@ -22,7 +22,7 @@ class _GoalSavePageState extends State<GoalSavePage>
   bool get isGoalSelected => false;
   late final TabController controller;
   Investment? selectedInvestment;
-  InvestmentDetails? details;
+  InvestmentDetails details = InvestmentDetails();
 
   @override
   void initState() {
@@ -40,7 +40,7 @@ class _GoalSavePageState extends State<GoalSavePage>
           ? Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: ProceedButton(
-                  investment: selectedInvestment!, details: details!),
+                  investment: selectedInvestment!, details: details),
             )
           : selectedInvestment != null
               ? SizedBox(
@@ -65,7 +65,7 @@ class _GoalSavePageState extends State<GoalSavePage>
                 ChooseInvestmentType(
                   onTileClicked: (inv) {
                     if (inv != null) {
-                      details?.investmentType = inv;
+                      details.investmentType = inv;
                     }
                     selectedInvestment = inv;
                     setState(() {});

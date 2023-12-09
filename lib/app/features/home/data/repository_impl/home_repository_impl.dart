@@ -31,8 +31,8 @@ class HomeRepositoryImpl extends HomeRepository {
   @override
   Future<Either<ErrorState, List<InvestmentDetails>>> fetchGoals(
       int userId) async {
-    return await ErrorHandler.callApi(
-        () => homeDataSource.fetchUserSavedDetails(userId), (result) {
+    return await ErrorHandler.callApi(() => homeDataSource.fetchGoals(userId),
+        (result) {
       final res = result['result'] as List<dynamic>;
       return res.map((e) => InvestmentDetails.fromJson(e)).toList();
     });

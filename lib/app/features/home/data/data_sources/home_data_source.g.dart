@@ -32,7 +32,7 @@ class _HomeDataSource implements HomeDataSource {
     )
             .compose(
               _dio.options,
-              '/v1/',
+              '/v1/fetch-balance',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -60,7 +60,35 @@ class _HomeDataSource implements HomeDataSource {
     )
             .compose(
               _dio.options,
-              '/v1/',
+              '/v1/fetch-user-details',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = _result.data;
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<dynamic>> fetchGoals(int userId) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = {'user_id': userId};
+    final _result =
+        await _dio.fetch(_setStreamType<HttpResponse<dynamic>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/v1/fetch-goals',
               queryParameters: queryParameters,
               data: _data,
             )
