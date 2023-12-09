@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:goal_based_savings_fello/app/features/goal_save/presentation/bloc/goal_save_bloc/bloc.dart';
+// import 'package:flutter_bloc/flutter_bloc.dart';
+// import 'package:goal_based_savings_fello/app/features/goal_save/presentation/bloc/goal_save_bloc/bloc.dart';
 import 'package:goal_based_savings_fello/app/features/home/presentation/bloc/home_fello_balance_bloc/bloc.dart';
+// import 'package:goal_based_savings_fello/app/features/home/presentation/bloc/home_goals_bloc/bloc.dart';
 import 'package:goal_based_savings_fello/app/features/home/presentation/bloc/home_user_info_bloc/bloc.dart';
 import 'package:goal_based_savings_fello/app/features/home/presentation/components/balance_section.dart';
 import 'package:goal_based_savings_fello/app/features/home/presentation/components/current_investment_card.dart';
@@ -21,11 +22,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final goalListingBloc = sl<HomeGoalsBloc>();
+  // final goalListingBloc = sl<HomeGoalsBloc>();
   @override
   void initState() {
-    sl<HomeGoalsBloc>()
-        .add(const FetchGoalsEvent(Constants.userId));
+    sl<HomeUserInfoBloc>()
+        .add(const FetchFelloUserSavedDetailsEvent(Constants.userId));
     sl<HomeFelloBalanceBloc>()
         .add(const FetchFelloBalanceEvent(Constants.userId));
     super.initState();
@@ -61,24 +62,24 @@ class _HomePageState extends State<HomePage> {
             'Ongoing goals',
             style: context.titleLarge,
           ),
-          Expanded(
-              child: BlocBuilder(
-                  bloc: goalListingBloc,
-                  builder: (context, state) {
-                    if (state is HomeGoalsLoadedState) {
-                      return ListView.builder(
-                        itemBuilder: (context, index) =>
-                            ListTile(
-                              title: Text(state.detailsList[index].title),
-                              subtitle: Text(state.detailsList[index].amount
-                                  .toString()),
-                            ),
-                      );
-                    } else {
-                      return const Center(child: CircularProgressIndicator(),)
-                    }
-                  }
-              ))
+          // Expanded(
+          //     child: BlocBuilder(
+          //         bloc: goalListingBloc,
+          //         builder: (context, state) {
+          //           if (state is LoadedState) {
+          //             return ListView.builder(
+          //               itemBuilder: (context, index) =>
+          //                   ListTile(
+          //                     title: Text(state.detailsList[index].title),
+          //                     subtitle: Text(state.detailsList[index].amount
+          //                         .toString()),
+          //                   ),
+          //             );
+          //           } else {
+          //             return const Center(child: CircularProgressIndicator());
+          //           }
+          //         }
+          //     ))
         ],
       ),
     );

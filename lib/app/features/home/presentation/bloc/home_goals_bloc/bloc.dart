@@ -10,10 +10,10 @@ part 'events.dart';
 
 part 'states.dart';
 
-class HomeUserInfoBloc extends Bloc<HomeUserInfoEvent, HomeUserInfoState> {
+class HomeGoalsBloc extends Bloc<HomeUserInfoEvent, HomeUserInfoState> {
   final FetchUserSavedDetailsUseCase fetchUserSavedDetailsUseCase;
 
-  HomeUserInfoBloc(this.fetchUserSavedDetailsUseCase)
+  HomeGoalsBloc(this.fetchUserSavedDetailsUseCase)
       : super(HomeUserInfoInitialState()) {
     on<FetchFelloUserSavedDetailsEvent>(fetchFelloUserSavedDetailsEvent);
   }

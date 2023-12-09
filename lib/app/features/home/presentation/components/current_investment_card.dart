@@ -20,7 +20,7 @@ class CurrentInvestmentCard extends StatefulWidget {
 }
 
 class _CurrentInvestmentCardState extends State<CurrentInvestmentCard> {
-  final bloc = sl<HomeGoalsBloc>();
+  final bloc = sl<HomeUserInfoBloc>();
   @override
   Widget build(BuildContext context) {
     return Container(
