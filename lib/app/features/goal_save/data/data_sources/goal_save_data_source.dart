@@ -8,6 +8,6 @@ part 'goal_save_data_source.g.dart';
 abstract class GoalSaveDataSource {
   factory GoalSaveDataSource(Dio dio) = _GoalSaveDataSource;
 
-  @POST('/v1/')
-  Future<HttpResponse> invest(@Field("user_id") InvestmentDetails details);
+  @POST('/v1/add-invest-data')
+  Future<HttpResponse> invest(@Body() InvestmentDetails details);
 }

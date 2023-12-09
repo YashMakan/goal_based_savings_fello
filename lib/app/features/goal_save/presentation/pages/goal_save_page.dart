@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:goal_based_savings_fello/app/features/goal_save/data/models/investment_details.dart';
 import 'package:goal_based_savings_fello/app/features/goal_save/presentation/components/add_goal_section.dart';
 import 'package:goal_based_savings_fello/app/features/goal_save/presentation/components/choose_investment_type.dart';
 import 'package:goal_based_savings_fello/app/features/goal_save/presentation/components/goal_save_page_app_bar.dart';
@@ -21,6 +22,7 @@ class _GoalSavePageState extends State<GoalSavePage>
   bool get isGoalSelected => false;
   late final TabController controller;
   Investment? selectedInvestment;
+  InvestmentDetails? details;
 
   @override
   void initState() {
@@ -37,7 +39,8 @@ class _GoalSavePageState extends State<GoalSavePage>
       floatingActionButton: controller.index == 1 && selectedInvestment != null
           ? Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: ProceedButton(investment: selectedInvestment!),
+              child: ProceedButton(
+                  investment: selectedInvestment!, details: details!),
             )
           : selectedInvestment != null
               ? SizedBox(
@@ -61,12 +64,15 @@ class _GoalSavePageState extends State<GoalSavePage>
               children: [
                 ChooseInvestmentType(
                   onTileClicked: (inv) {
+                    if (inv != null) {
+                      details?.investmentType = inv;
+                    }
                     selectedInvestment = inv;
                     setState(() {});
                   },
                   selectedInvestment: selectedInvestment,
                 ),
-                AddGoalSection(selectedInvestment: selectedInvestment),
+                AddGoalSection(selectedInvestment: selectedInvestment, details: details),
               ],
             ),
           ),

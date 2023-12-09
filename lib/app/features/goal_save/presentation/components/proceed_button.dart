@@ -10,8 +10,10 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ProceedButton extends StatefulWidget {
   final Investment investment;
+  final InvestmentDetails details;
 
-  const ProceedButton({super.key, required this.investment});
+  const ProceedButton(
+      {super.key, required this.investment, required this.details});
 
   @override
   State<ProceedButton> createState() => _ProceedButtonState();
@@ -42,13 +44,7 @@ class _ProceedButtonState extends State<ProceedButton> {
           activeThumbColor: CustomColors.darkGreen,
           activeTrackColor: Colors.white,
           onSwipe: () {
-            goalSaveBloc.add(InvestEvent(InvestmentDetails(
-              name: ,
-              date: ,
-              amount: ,
-              goalType: ,
-              investmentType: ,
-            )));
+            goalSaveBloc.add(InvestEvent(widget.details));
           },
           child: Text(
             "Invest in $text",

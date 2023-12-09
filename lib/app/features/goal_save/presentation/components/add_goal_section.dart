@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:goal_based_savings_fello/app/features/goal_save/data/models/investment_details.dart';
 import 'package:goal_based_savings_fello/app/features/goal_save/domain/entities/goal_entity.dart';
 import 'package:goal_based_savings_fello/app/shared/config/constants/enums.dart';
 import 'package:goal_based_savings_fello/app/shared/config/theme/text_theme.dart';
@@ -8,8 +9,9 @@ import 'package:goal_based_savings_fello/app/shared/core/components/selectable_c
 
 class AddGoalSection extends StatefulWidget {
   final Investment? selectedInvestment;
+  final InvestmentDetails? details;
 
-  const AddGoalSection({super.key, this.selectedInvestment});
+  const AddGoalSection({super.key, this.selectedInvestment, this.details});
 
   @override
   State<AddGoalSection> createState() => _AddGoalSectionState();
@@ -17,7 +19,7 @@ class AddGoalSection extends StatefulWidget {
 
 class _AddGoalSectionState extends State<AddGoalSection> {
   final List<GoalEntity> goals = [
-    GoalEntity("", "Vacation"),
+    GoalEntity("", "Vacation"), // todo: need to add asset but not enough time
     GoalEntity("", "Education"),
     GoalEntity("", "Buy car"),
     GoalEntity("", "Medical"),
@@ -44,9 +46,9 @@ class _AddGoalSectionState extends State<AddGoalSection> {
                 height: 2,
                 decoration: const BoxDecoration(
                     gradient: LinearGradient(colors: [
-                  Colors.transparent,
-                  Colors.white,
-                ])),
+                      Colors.transparent,
+                      Colors.white,
+                    ])),
               ),
             ),
             const ChipWidget(
@@ -58,9 +60,9 @@ class _AddGoalSectionState extends State<AddGoalSection> {
                 height: 2,
                 decoration: const BoxDecoration(
                     gradient: LinearGradient(colors: [
-                  Colors.white,
-                  Colors.transparent,
-                ])),
+                      Colors.white,
+                      Colors.transparent,
+                    ])),
               ),
             ),
           ],
@@ -76,9 +78,11 @@ class _AddGoalSectionState extends State<AddGoalSection> {
           runSpacing: 8,
           children: List.generate(
               goals.length,
-              (index) => SelectableChipWidget(
+                  (index) =>
+                  SelectableChipWidget(
                     onClick: () {
                       selectedIndex = index;
+                      widget.details?.goalType = goals[index].title;
                       setState(() {});
                     },
                     isSelected: selectedIndex == index,
@@ -89,19 +93,31 @@ class _AddGoalSectionState extends State<AddGoalSection> {
         CustomTextField(
             title: "Goal Name",
             enabled: isAnyGoalSelected,
+            onChanged: (text) {
+              widget.details?.name = text;
+            },
             asset: selectedIndex != null ? goals[selectedIndex!].asset : null),
         CustomTextField(
           title: "Goal Date",
           enabled: isAnyGoalSelected,
+          onChanged: (text) {
+            widget.details?.date = text;
+          },
         ),
         CustomTextField(
           title: "Goal Amount",
           textInputType: TextInputType.number,
           enabled: isAnyGoalSelected,
+          onChanged: (text) {
+            widget.details?.amount = double.tryParse(text) ?? 0;
+          },
         ),
         if (isOtherGoalSelected)
           CustomTextField(
             title: "Custom goal",
+            onChanged: (text) {
+              widget.details?.goalType = text;
+            },
             enabled: isOtherGoalSelected,
           ),
       ],

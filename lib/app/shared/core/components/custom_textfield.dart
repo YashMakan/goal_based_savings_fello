@@ -5,13 +5,15 @@ class CustomTextField extends StatelessWidget {
   final bool enabled;
   final String? asset;
   final TextInputType? textInputType;
+  final Function(String)? onChanged;
 
   const CustomTextField(
       {super.key,
       required this.title,
       required this.enabled,
       this.asset,
-      this.textInputType});
+      this.textInputType,
+      this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +24,7 @@ class CustomTextField extends StatelessWidget {
           color: Colors.white, borderRadius: BorderRadius.circular(8)),
       child: TextField(
         keyboardType: textInputType,
+        onChanged: onChanged,
         style: const TextStyle(color: Colors.black),
         decoration:
             InputDecoration(border: InputBorder.none, label: Text(title)),
