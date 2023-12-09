@@ -29,6 +29,9 @@ class MyApp extends StatelessWidget {
         title: Constants.appName,
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          textTheme: Theme.of(context).textTheme.apply(
+              bodyColor: CustomColors.defaultFontColor,
+              fontFamily: Constants.appFont),
           colorScheme: ColorScheme.fromSeed(seedColor: CustomColors.primary),
           scaffoldBackgroundColor: CustomColors.darkGrey,
           useMaterial3: true,
