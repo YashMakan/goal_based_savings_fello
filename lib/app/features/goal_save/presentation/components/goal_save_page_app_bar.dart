@@ -2,10 +2,13 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:goal_based_savings_fello/app/shared/config/assets/icon.dart';
+import 'package:goal_based_savings_fello/app/shared/config/constants/enums.dart';
 import 'package:goal_based_savings_fello/app/shared/core/components/chip_widget.dart';
 
 class GoalSavePageAppBar extends StatelessWidget {
-  const GoalSavePageAppBar({super.key});
+  final Investment? investment;
+
+  const GoalSavePageAppBar({super.key, this.investment});
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +28,15 @@ class GoalSavePageAppBar extends StatelessWidget {
         const SizedBox(width: 16),
         const Text('Invest: Goal Based'),
         const Spacer(),
-        ChipWidget(child: Row(
+        ChipWidget(
+            child: Row(
           children: [
             const Text('Help'),
             const SizedBox(width: 8),
-            Image.asset(AppIcons.headset, width: 16,)
+            Image.asset(
+              AppIcons.headset,
+              width: 16,
+            )
           ],
         ))
       ],

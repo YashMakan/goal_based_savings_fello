@@ -1,4 +1,4 @@
 class AppImages {
   static const String root = 'assets/images';
-  static const String image = '$root/image.png';
+  static const String pigAnimation = '$root/pig-animation.json';
 }

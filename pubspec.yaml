@@ -42,7 +42,7 @@ dependencies:
 
   # network/data source
   retrofit: ^4.0.3
-  connectivity_plus: ^5.0.2
+#  connectivity_plus: ^5.0.2
   dio: ^5.4.0
 
   # state management
@@ -58,6 +58,7 @@ dependencies:
   # ui
   responsive_sizer: ^3.2.0
   flutter_swipe_button:
+  lottie:
 
 dev_dependencies:
   flutter_test:
