@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:goal_based_savings_fello/app/features/goal_save/presentation/bloc/goal_save_bloc/bloc.dart';
 import 'package:goal_based_savings_fello/app/features/home/presentation/bloc/home_fello_balance_bloc/bloc.dart';
 import 'package:goal_based_savings_fello/app/features/home/presentation/bloc/home_user_info_bloc/bloc.dart';
 import 'package:goal_based_savings_fello/app/features/home/presentation/components/balance_section.dart';
@@ -7,6 +9,7 @@ import 'package:goal_based_savings_fello/app/features/home/presentation/componen
 import 'package:goal_based_savings_fello/app/features/home/presentation/components/home_page_app_bar.dart';
 import 'package:goal_based_savings_fello/app/shared/config/constants/colors.dart';
 import 'package:goal_based_savings_fello/app/shared/config/constants/constants.dart';
+import 'package:goal_based_savings_fello/app/shared/config/theme/text_theme.dart';
 import 'package:goal_based_savings_fello/app/shared/core/components/background_widget.dart';
 import 'package:goal_based_savings_fello/app/shared/core/inject_dependency/dependencies.dart';
 
@@ -18,10 +21,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final goalListingBloc = sl<GoalListingBloc>();
   @override
   void initState() {
-    sl<HomeUserInfoBloc>().add(const FetchFelloUserSavedDetailsEvent(Constants.userId));
-    sl<HomeFelloBalanceBloc>().add(const FetchFelloBalanceEvent(Constants.userId));
+    sl<HomeUserInfoBloc>()
+        .add(const FetchFelloUserSavedDetailsEvent(Constants.userId));
+    sl<HomeFelloBalanceBloc>()
+        .add(const FetchFelloBalanceEvent(Constants.userId));
     super.initState();
   }
 
@@ -50,6 +56,29 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
+          // todo: this widget I am adding in last so pardon the UI
+          Text(
+            'Ongoing goals',
+            style: context.titleLarge,
+          ),
+          Expanded(
+              child: BlocBuilder(
+                  bloc: goalListingBloc,
+                  builder: (context, state) {
+                    if (state is GoalListingLoadedState) {
+                      return ListView.builder(
+                        itemBuilder: (context, index) =>
+                            ListTile(
+                              title: Text(state.detailsList[index].title),
+                              subtitle: Text(state.detailsList[index].amount
+                                  .toString()),
+                            ),
+                      );
+                    } else {
+                      return const Center(child: CircularProgressIndicator(),)
+                    }
+                  }
+              ))
         ],
       ),
     );
