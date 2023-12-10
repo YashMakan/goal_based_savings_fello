@@ -20,7 +20,7 @@
 12. `Shimmer` animations for every api component.
 
 ## Folder Structure
-![Folder structure](https://raw.githubusercontent.com/YashMakan/flutter_form_kit/main/screenshots/image.png)
+![Folder structure](https://raw.githubusercontent.com/YashMakan/goal_based_savings_fello/main/screenshots/image.png)
 
 ## App Demo
-![Demo](https://raw.githubusercontent.com/YashMakan/flutter_form_kit/main/screenshots/demo.gif)
+![Demo](https://raw.githubusercontent.com/YashMakan/goal_based_savings_fello/main/screenshots/demo.gif)
